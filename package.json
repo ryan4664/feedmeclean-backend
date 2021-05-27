@@ -1,0 +1,33 @@
+{
+  "name": "feedmeclean-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "lint": "eslint src/ --ext ts",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryan4664/feedmeclean-backend.git"
+  },
+  "author": "Ryan Donohue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryan4664/feedmeclean-backend/issues"
+  },
+  "homepage": "https://github.com/ryan4664/feedmeclean-backend#readme",
+  "dependencies": {
+    "@types/node": "^15.6.1",
+    "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.3.2"
+  }
+}
