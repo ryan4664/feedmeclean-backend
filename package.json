@@ -2,7 +2,7 @@
   "name": "feedmeclean-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "lint": "eslint src/ --ext ts",
     "build": "tsc",

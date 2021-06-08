@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+    feedmeclean-backend:
+      build: 
+        context: .
+        args: 
+            t: ryan4664/feedmeclean-backend
+      ports:
+        - "8080:8080"
