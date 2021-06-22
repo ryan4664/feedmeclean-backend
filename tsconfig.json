@@ -6,7 +6,7 @@
     "noImplicitAny": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "sourceMap": true,
     "outDir": "dist",
     "baseUrl": ".",

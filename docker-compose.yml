@@ -1,6 +1,13 @@
 version: "3.9"
 
 services:
+    db:
+      image: postgres
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: mysecretpassword
+      ports:
+        - "5431:5432"
     feedmeclean-backend:
       build: 
         context: .
@@ -8,3 +15,6 @@ services:
             t: ryan4664/feedmeclean-backend
       ports:
         - "8080:8080"
+      volumes:
+        - .:/usr/src/app
+        - /usr/src/app/node_modules

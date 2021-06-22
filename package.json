@@ -7,7 +7,7 @@
     "lint": "eslint src/ --ext ts",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node .",
+    "start": "nodemon -L",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,8 +21,15 @@
   },
   "homepage": "https://github.com/ryan4664/feedmeclean-backend#readme",
   "dependencies": {
-    "@types/node": "^15.6.1",
-    "express": "^4.16.1"
+    "@types/node": "^15.12.3",
+    "@types/validator": "^13.1.4",
+    "apollo-server": "^2.25.1",
+    "global": "^4.4.0",
+    "graphql": "^15.5.0",
+    "knex": "^0.95.6",
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.2",
+    "ts-node": "^10.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.25.0",
