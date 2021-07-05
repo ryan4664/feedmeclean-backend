@@ -1,28 +1,8 @@
 import { ApolloServer, gql } from 'apollo-server'
 import knex from 'knex'
+import Products from './datasources/Products'
 
-const knexConnection = knex({
-  client: 'pg',
-  connection: {
-    host: 'localhost',
-    port: 5431,
-    user: 'postgres',
-    password: 'mysecretpassword',
-    database: 'feedmeclean'
-  },
-  log: {
-    warn(message) {
-      console.warn(message)
-    },
-    error(message) {
-      console.error(message)
-    },
-    debug(message) {
-      console.debug(message)
-    }
-  },
-})
-
+import { db } from './db'
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
@@ -60,12 +40,19 @@ const books = [
 const resolvers = {
   Query: {
     books: () => books
+    
   }
 }
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources: () => ({
+    products: new Products({ store: db })
+  })
+})
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {

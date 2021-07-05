@@ -1,9 +1,15 @@
 import { DataSource } from 'apollo-datasource'
+import { Knex } from 'knex'
 
-export default class UserAPI extends DataSource {
-  store: any
+interface IProduct {
+  id: number
+  name: string
+}
+
+export default class Products extends DataSource {
+  store: Knex<IProduct>
   context: any
-  
+
   constructor({ store }) {
     super()
     this.store = store
@@ -24,14 +30,14 @@ export default class UserAPI extends DataSource {
   //  * have to be. If the user is already on the context, it will use that user
   //  * instead
   //  */
-  // async findOrCreateUser({ email: emailArg } = {}) {
-  //   const email =
-  //     this.context && this.context.user ? this.context.user.email : emailArg
-  //   if (!email || !isEmail.validate(email)) return null
+  async findAll() {
+    // const email =
+    //   this.context && this.context.user ? this.context.user.email : emailArg
 
-  //   const users = await this.store.users.findOrCreate({ where: { email } })
-  //   return users && users[0] ? users[0] : null
-  // }
+    let result = await this.store.select('*')
+
+    return result
+  }
 
   // async bookTrips({ launchIds }) {
   //   const userId = this.context.user.id
