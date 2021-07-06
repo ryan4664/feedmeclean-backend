@@ -1,17 +1,19 @@
-const { paginateResults } = require('./utils');
+// I don't think I'll use this file but keep around for ref
+
+const { paginateResults } = require('./utils')
 
 module.exports = {
   Query: {
     launches: async (_, { pageSize = 20, after }, { dataSources }) => {
-      const allLaunches = await dataSources.launchAPI.getAllLaunches();
+      const allLaunches = await dataSources.launchAPI.getAllLaunches()
       // we want these in reverse chronological order
-      allLaunches.reverse();
+      allLaunches.reverse()
 
       const launches = paginateResults({
         after,
         pageSize,
-        results: allLaunches,
-      });
+        results: allLaunches
+      })
 
       return {
         launches,
@@ -21,12 +23,11 @@ module.exports = {
         hasMore: launches.length
           ? launches[launches.length - 1].cursor !==
             allLaunches[allLaunches.length - 1].cursor
-          : false,
-      };
+          : false
+      }
     },
     launch: (_, { id }, { dataSources }) =>
       dataSources.launchAPI.getLaunchById({ launchId: id }),
-    me: async (_, __, { dataSources }) =>
-      dataSources.userAPI.findOrCreateUser(),
-  },
-};
+    me: async (_, __, { dataSources }) => dataSources.userAPI.findOrCreateUser()
+  }
+}

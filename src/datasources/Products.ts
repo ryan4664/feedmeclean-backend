@@ -6,6 +6,10 @@ interface IProduct {
   name: string
 }
 
+export interface IProducts {
+  findAll: () => void
+}
+
 export default class Products extends DataSource {
   store: Knex<IProduct>
   context: any
@@ -30,13 +34,8 @@ export default class Products extends DataSource {
   //  * have to be. If the user is already on the context, it will use that user
   //  * instead
   //  */
-  async findAll() {
-    // const email =
-    //   this.context && this.context.user ? this.context.user.email : emailArg
-
+  async findAll(): Promise<IProduct[]> {
     let result = await this.store.select('*').from('products')
-
-    console.log('Result', result)
 
     return result
   }
