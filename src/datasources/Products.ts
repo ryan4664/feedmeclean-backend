@@ -21,9 +21,9 @@ export default class Products extends DataSource {
   //  * like caches and context. We'll assign this.context to the request context
   //  * here, so we can know about the user making requests
   //  */
-  // initialize(config) {
-  //   this.context = config.context
-  // }
+  initialize(config) {
+    this.context = config.context
+  }
 
   // /**
   //  * User can be called with an argument that includes email, but it doesn't
@@ -34,7 +34,9 @@ export default class Products extends DataSource {
     // const email =
     //   this.context && this.context.user ? this.context.user.email : emailArg
 
-    let result = await this.store.select('*')
+    let result = await this.store.select('*').from('products')
+
+    console.log('Result', result)
 
     return result
   }
